@@ -12,19 +12,15 @@ function getAndPrintHTMLChunks () {
     response.setEncoding('utf8');
 
     // get data in chunks
-    let rawData = "";
     response.on('data', function(chunk){
-      rawData += chunk;
+      console.log("CHUNK:", chunk, "\n");
     });
 
     response.on('end', function() {
-      try {
-        // const parsedData = JSON.parse(rawData);
-        console.log(rawData);
-      } catch (e) {
-        console.error(e.message);
-      }
+      console.log('Response stream complete.');
     });
+
+
   }).on('error', (e) => {
     console.error(`Got error: ${e.message}`);
   });
